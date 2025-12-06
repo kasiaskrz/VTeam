@@ -185,3 +185,79 @@ footer {
 .team-card li {
     margin: 3px 0;
 }
+
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #0f0f0f;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.25);
+}
+
+/* Title styling for consistency */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: "Oswald", sans-serif;
+    color: #fff;
+}
+
+/* Input styling */
+.form-container .form-control {
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    color: white;
+}
+
+.form-container .form-control:focus {
+    border-color: #ff2c2c;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+}
+
+/* Buttons consistent */
+.form-container button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Labels */
+.form-container label {
+    font-weight: 600;
+    color: #ddd;
+}
+
+.vteam-btn {
+    width: fit-content !important;
+    display: block !important;
+    margin: 15px auto 0 auto !important;
+    padding: 10px 28px !important;
+    background: #D1363A;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.2s ease;
+}
+
+
+.vteam-btn:hover {
+    background: #ff4747;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.vteam-btn:active {
+    background: #d92020;
+    transform: translateY(0);
+}
+
+.form-control::placeholder {
+    color: #444444 !important;
+    opacity: 1;
+}

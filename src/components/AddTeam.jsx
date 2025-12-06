@@ -6,7 +6,7 @@ export default function AddTeam() {
   const [teamName, setTeamName] = useState("");
   const [region, setRegion] = useState("");
   const [championships, setChampionships] = useState("");
-  const [logoUrl, setLogoUrl] = useState("");  
+  const [logoUrl, setLogoUrl] = useState("");
 
   const navigate = useNavigate();
 
@@ -16,15 +16,15 @@ export default function AddTeam() {
     const teamData = {
       teamName,
       region,
-      logoUrl,   // send logo to backend
-
+      logoUrl,
       championships: championships
         .split(",")
         .map((c) => c.trim())
-        .filter((c) => c !== "")  // ignore empty strings
+        .filter((c) => c !== ""),
     };
 
-    api.post("/teams", teamData)
+    api
+      .post("/teams", teamData)
       .then(() => {
         alert("Team created!");
         navigate("/teams");
@@ -33,11 +33,10 @@ export default function AddTeam() {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="form-container">
       <h2>Create Team</h2>
 
       <form onSubmit={handleSubmit}>
-
         <div className="mb-3">
           <label>Team Name</label>
           <input
@@ -68,7 +67,7 @@ export default function AddTeam() {
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Team Logo URL</label>
+          <label>Team Logo URL</label>
           <input
             type="text"
             className="form-control"
@@ -79,7 +78,6 @@ export default function AddTeam() {
         </div>
 
         <button className="btn btn-primary">Create Team</button>
-
       </form>
     </div>
   );

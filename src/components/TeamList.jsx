@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../axiosConfig";
 import { Link } from "react-router-dom";
+import placeholderLogo from "../assets/placeholder_img.png";
 
 export default function TeamList() {
   const [teams, setTeams] = useState([]);
@@ -34,29 +35,21 @@ export default function TeamList() {
           >
 
             {/* TEAM LOGO */}
-            {team.logoUrl ? (
-              <img
-                src={team.logoUrl}
-                alt={`${team.teamName} logo`}
-                style={{
-                  width: "80px",
-                  height: "80px",
-                  objectFit: "contain",
-                  marginBottom: "10px"
-                }}
-              />
-            ) : (
-              <img
-                src=""
-                alt="No logo"
-                style={{
-                  width: "80px",
-                  height: "80px",
-                  objectFit: "contain",
-                  marginBottom: "10px"
-                }}
-              />
-            )}
+            <img
+              src={
+                team.logoUrl && team.logoUrl.trim() !== ""
+                  ? team.logoUrl
+                  : placeholderLogo
+              }
+              alt={`${team.teamName} logo`}
+              style={{
+                width: "80px",
+                height: "80px",
+                objectFit: "contain",
+                marginBottom: "10px"
+              }}
+            />
+
 
             <h4>{team.teamName}</h4>
 
