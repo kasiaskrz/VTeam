@@ -6,7 +6,7 @@ export default function AddTeam() {
   const [teamName, setTeamName] = useState("");
   const [region, setRegion] = useState("");
   const [championships, setChampionships] = useState("");
-  const [logoUrl, setLogoUrl] = useState("");   // ⭐ NEW
+  const [logoUrl, setLogoUrl] = useState("");  
 
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ export default function AddTeam() {
     const teamData = {
       teamName,
       region,
-      logoUrl,   // ⭐ NEW — send logo to backend
+      logoUrl,   // send logo to backend
 
       championships: championships
         .split(",")

@@ -21,7 +21,7 @@ export default function NavigationBar() {
           />
         </Navbar.Brand>
 
-        {/* 🔽 Hamburger icon appears here */}
+        {/* Hamburger icon appears here */}
         <Navbar.Toggle aria-controls="main-navbar" />
 
         <Navbar.Collapse id="main-navbar">
