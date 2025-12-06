@@ -6,39 +6,33 @@ import TeamList from './components/TeamList'
 import AddTeam from './components/AddTeam'
 import EditTeam from './components/EditTeam'
 import PlayerDetails from './components/PlayerDetails'
-import AddPlayer from "./components/AddPlayer";
-
-
-import { Nav, Navbar, Container } from 'react-bootstrap'
+import AddPlayer from "./components/AddPlayer"
+import EditPlayer from "./components/EditPlayer"
 import { Routes, Route, Link } from 'react-router-dom'
+import NavigationBar from "./components/NavigationBar"
+
 
 function App() {
   return (
-    <>
-      <Navbar bg="primary" data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand as={Link} to="/">VTeams</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/teams">Teams</Nav.Link>
-            <Nav.Link as={Link} to="/add">Add Team</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
+    <div className="app-wrapper">
+      <NavigationBar />
 
-      <Routes>
-        <Route path="/" element={<Content />} />
-        <Route path="/teams" element={<TeamList />} />
-        <Route path="/add" element={<AddTeam />} />
-        <Route path="/edit/:id" element={<EditTeam />} />
-        <Route path="/teams/:teamId/players/:playerId" element={<PlayerDetails />} />
-        <Route path="/teams/:teamId/players/add" element={<AddPlayer />} />
-
-      </Routes>
+      <div className="page-content">
+        <Routes>
+          <Route path="/" element={<Content />} />
+          <Route path="/teams" element={<TeamList />} />
+          <Route path="/add" element={<AddTeam />} />
+          <Route path="/edit/:id" element={<EditTeam />} />
+          <Route path="/teams/:teamId/players/:playerId" element={<PlayerDetails />} />
+          <Route path="/teams/:teamId/players/add" element={<AddPlayer />} />
+          <Route path="/teams/:teamId/players/:playerId/edit" element={<EditPlayer />} />
+        </Routes>
+      </div>
 
       <Footer />
-    </>
-  )
+    </div>
+  );
 }
+
 
 export default App

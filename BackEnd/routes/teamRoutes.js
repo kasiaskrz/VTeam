@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   res.json(teams);
 });
 
-// ⭐ NEW: GET single team by ID
+// GET single team by ID
 router.get("/:id", async (req, res) => {
   try {
     const team = await Team.findById(req.params.id);
@@ -25,17 +25,15 @@ router.post("/", async (req, res) => {
   res.json(team);
 });
 
-// NEW: POST add player to a team
+// POST add player to team (max 5 players)
 router.post("/:id/players", async (req, res) => {
   try {
     const team = await Team.findById(req.params.id);
 
-    // If team already has 5 players → do NOT allow adding more
     if (team.players.length >= 5) {
       return res.status(400).json({ error: "Team already has 5 players" });
     }
 
-    // Add the new player
     team.players.push(req.body);
 
     await team.save();
@@ -45,7 +43,6 @@ router.post("/:id/players", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 
 // PUT update team
 router.put("/:id", async (req, res) => {
@@ -57,10 +54,48 @@ router.put("/:id", async (req, res) => {
   res.json(updated);
 });
 
-// DELETE remove team
+// DELETE team
 router.delete("/:id", async (req, res) => {
   await Team.findByIdAndDelete(req.params.id);
   res.json({ message: "Team deleted" });
+});
+
+// DELETE a player
+router.delete("/:teamId/players/:playerId", async (req, res) => {
+  try {
+    const team = await Team.findById(req.params.teamId);
+
+    team.players = team.players.filter(
+      (p) => p._id.toString() !== req.params.playerId
+    );
+
+    await team.save();
+    res.json({ message: "Player deleted" });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// UPDATE a player
+router.put("/:teamId/players/:playerId", async (req, res) => {
+  try {
+    const team = await Team.findById(req.params.teamId);
+
+    const player = team.players.id(req.params.playerId);
+    if (!player) {
+      return res.status(404).json({ error: "Player not found" });
+    }
+
+    player.age = req.body.age;
+    player.signatureAgentsPlayed = req.body.signatureAgentsPlayed;
+
+    await team.save();
+    res.json(player);
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 export default router;

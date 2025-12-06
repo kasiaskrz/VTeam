@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function AddTeam() {
   const [teamName, setTeamName] = useState("");
-  const [region, setRegion] = useState("");             
+  const [region, setRegion] = useState("");
   const [championships, setChampionships] = useState("");
+  const [logoUrl, setLogoUrl] = useState("");   // ⭐ NEW
 
   const navigate = useNavigate();
 
@@ -13,11 +14,14 @@ export default function AddTeam() {
     e.preventDefault();
 
     const teamData = {
-      teamName: teamName,
-      region: region,                                   
+      teamName,
+      region,
+      logoUrl,   // ⭐ NEW — send logo to backend
+
       championships: championships
         .split(",")
         .map((c) => c.trim())
+        .filter((c) => c !== "")  // ignore empty strings
     };
 
     api.post("/teams", teamData)
@@ -33,6 +37,7 @@ export default function AddTeam() {
       <h2>Create Team</h2>
 
       <form onSubmit={handleSubmit}>
+
         <div className="mb-3">
           <label>Team Name</label>
           <input
@@ -62,7 +67,19 @@ export default function AddTeam() {
           />
         </div>
 
+        <div className="mb-3">
+          <label className="form-label">Team Logo URL</label>
+          <input
+            type="text"
+            className="form-control"
+            value={logoUrl}
+            onChange={(e) => setLogoUrl(e.target.value)}
+            placeholder="https://upload.wikimedia.org/wikipedia/en/2/25/Shopify_Rebellion.svg"
+          />
+        </div>
+
         <button className="btn btn-primary">Create Team</button>
+
       </form>
     </div>
   );

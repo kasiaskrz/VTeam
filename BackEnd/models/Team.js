@@ -8,9 +8,17 @@ const playerSchema = new mongoose.Schema({
 
 const teamSchema = new mongoose.Schema({
   teamName: String,
-  region: String,               
+  region: String,
+  logoUrl: {
+    type: String,
+    default: ""
+  },
+  
   players: [playerSchema],
-  championships: [String],
+  championships: {
+    type: [String],
+    default: []
+  },
   createdAt: {
     type: Date,
     default: Date.now

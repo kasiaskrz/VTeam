@@ -1,18 +1,40 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
 
 export default function NavigationBar() {
   return (
-     <Navbar bg="primary" data-bs-theme="dark">
-          <Container>
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-            <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/read">Read</Nav.Link>
-              <Nav.Link href="/create">Create</Nav.Link>
-            </Nav>
-          </Container>
-        </Navbar>
+    <Navbar
+      expand="lg"
+      className="vteam-navbar"
+      variant="dark"
+    >
+      <Container>
+
+        {/* LOGO */}
+        <Navbar.Brand as={Link} to="/">
+          <img
+            src="/src/assets/Logo_white.ver.png"
+            alt="VTeams Logo"
+            className="navbar-logo"
+          />
+        </Navbar.Brand>
+
+        {/* 🔽 Hamburger icon appears here */}
+        <Navbar.Toggle aria-controls="main-navbar" />
+
+        <Navbar.Collapse id="main-navbar">
+          <Nav className="ms-auto">
+
+            <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/teams">Teams</Nav.Link>
+            <Nav.Link as={Link} to="/add">Add Team</Nav.Link>
+
+          </Nav>
+        </Navbar.Collapse>
+
+      </Container>
+    </Navbar>
   );
 }
